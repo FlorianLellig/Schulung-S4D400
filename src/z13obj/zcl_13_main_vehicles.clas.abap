@@ -29,13 +29,13 @@ CLASS zcl_13_main_vehicles IMPLEMENTATION.
 
     out->write( |Number of Vehicles: { zcl_13_vehicle=>number_of_vehicles }| ).
 
-    vehicle = NEW #( make = 'Porsche' model = '911' ).
+    vehicle = NEW zcl_13_car( make = 'Porsche' model = '911' seats = 2 ).         " Upcast bzw. Widening-cast
     APPEND vehicle TO vehicles.
 
-    vehicle = NEW #( make = 'MAN' model = 'TGX' ).
+    vehicle = NEW zcl_13_truck( make = 'MAN' model = 'TGX' cargo_in_tons = '40' ).
     APPEND vehicle TO vehicles.
 
-    vehicle = NEW #( make = 'Skoda' model = 'Superb Combi' ).
+    vehicle = NEW zcl_13_car( make = 'Skoda' model = 'Superb Combi' seats = 5 ).
     APPEND vehicle TO vehicles.
 
     out->write( |Number of Vehicles: { zcl_13_vehicle=>number_of_vehicles }| ).
@@ -51,7 +51,7 @@ CLASS zcl_13_main_vehicles IMPLEMENTATION.
         CATCH zcx_13_value_too_high INTO DATA(x).
           out->write( x->get_text( ) ).
       ENDTRY.
-      out->write( |{ vehicle->make } { vehicle->model }| ).
+      out->write( vehicle->to_string( ) ).
     ENDLOOP.
 
 

@@ -1,6 +1,5 @@
 CLASS zcl_13_vehicle DEFINITION
   PUBLIC
-  FINAL
   CREATE PUBLIC .
 
   PUBLIC SECTION.
@@ -12,6 +11,8 @@ CLASS zcl_13_vehicle DEFINITION
 
     METHODS accelerate IMPORTING value TYPE i RAISING zcx_13_value_too_high.
     METHODS brake IMPORTING value TYPE i RAISING zcx_13_value_too_high.
+    METHODS to_string RETURNING VALUE(string) TYPE String.
+
 
 
     DATA make TYPE string READ-ONLY.
@@ -70,5 +71,11 @@ CLASS zcl_13_vehicle IMPLEMENTATION.
 
   ENDMETHOD.
 
+
+  METHOD to_string.
+
+    string = |{ make } { model } ({ speed_in_kmh }km/h)|.
+
+  ENDMETHOD.
 
 ENDCLASS.
