@@ -1,6 +1,5 @@
 CLASS zcl_13_airplane DEFINITION
   PUBLIC
-  FINAL
   CREATE PUBLIC .
 
   PUBLIC SECTION.
@@ -14,6 +13,8 @@ CLASS zcl_13_airplane DEFINITION
     DATA empty_weight_in_tons TYPE i READ-ONLY.
 
     CLASS-DATA number_of_airplanes TYPE i READ-ONLY.
+
+    Methods GET_TOTAL_WEIGHT_IN_TONS RETURNING VALUE(int) TYPE i.
 
   PROTECTED SECTION.
   PRIVATE SECTION.
@@ -40,6 +41,12 @@ CLASS zcl_13_airplane IMPLEMENTATION.
     me->empty_weight_in_tons = empty_weight_in_tons.
 
     number_of_airplanes = number_of_airplanes + 1.
+  ENDMETHOD.
+
+  METHOD get_total_weight_in_tons.
+
+    int = '1.1' * empty_weight_in_tons.
+
   ENDMETHOD.
 
 ENDCLASS.

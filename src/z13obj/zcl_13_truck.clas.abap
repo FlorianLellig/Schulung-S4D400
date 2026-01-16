@@ -5,14 +5,17 @@ CLASS zcl_13_truck DEFINITION
 
   PUBLIC SECTION.
     DATA cargo_in_tons TYPE i.
+    DATA is_transformed TYPE c LENGTH 1 READ-ONLY.
 
-    methods constructor
+    METHODS constructor
       IMPORTING
-        make TYPE string
-        model TYPE String
+        make          TYPE string
+        model         TYPE String
         cargo_in_tons TYPE i.
 
-    methods to_string REDEFINITION.
+    METHODS to_string REDEFINITION.
+
+    METHODS transform.
 
 
   PROTECTED SECTION.
@@ -35,6 +38,18 @@ CLASS zcl_13_truck IMPLEMENTATION.
   METHOD to_string.
 
     string = |{ super->to_string( ) }, Frachtkapazität: { me->cargo_in_tons }t|.
+
+  ENDMETHOD.
+
+
+  METHOD transform.
+
+    IF me->is_transformed = 'X'.
+      me->is_transformed = ''.
+    ELSE.
+      me->is_transformed = 'X'.
+    ENDIF.
+
 
   ENDMETHOD.
 

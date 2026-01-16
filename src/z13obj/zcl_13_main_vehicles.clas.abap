@@ -43,6 +43,8 @@ CLASS zcl_13_main_vehicles IMPLEMENTATION.
 **********************************************************************
 * Ausgabe
 **********************************************************************
+    DATA truck TYPE REF TO zcl_13_truck.
+
     LOOP AT vehicles INTO vehicle.
       TRY.
         vehicle->accelerate( 30 ).
@@ -51,7 +53,15 @@ CLASS zcl_13_main_vehicles IMPLEMENTATION.
         CATCH zcx_13_value_too_high INTO DATA(x).
           out->write( x->get_text( ) ).
       ENDTRY.
-      out->write( vehicle->to_string( ) ).
+
+      IF vehicle IS INSTANCE OF zcl_13_truck.
+        truck = CAST #( vehicle ).
+        truck->transform(  ).
+        out->write( |{ cond #( WHEN truck->is_transformed = 'X' THEN 'Der LKW hat sich in einen Autobot verwandelt.'
+                                                                ELSE 'Der Autobot hat sich in einen LKW verwandlet.' ) } | ).
+      ENDIF.
+
+      out->write( vehicle->to_string( ) ).                 " Downcast bzw. Narrowing-cast --> (Dynamische) Polymorphie
     ENDLOOP.
 
 
