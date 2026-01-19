@@ -37,7 +37,7 @@ CLASS zcl_13_truck IMPLEMENTATION.
 
   METHOD to_string.
 
-    string = |{ super->to_string( ) }, Frachtkapazität: { me->cargo_in_tons }t|.
+    string = |Ich bin ein { cond #( WHEN is_transformed = 'X' THEN 'Autobot' ELSE 'LKW' ) }|.
 
   ENDMETHOD.
 

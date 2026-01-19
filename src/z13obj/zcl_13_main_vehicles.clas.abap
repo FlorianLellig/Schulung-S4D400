@@ -23,6 +23,16 @@ CLASS zcl_13_main_vehicles IMPLEMENTATION.
     DATA vehicle TYPE REF TO zcl_13_vehicle.
     DATA vehicles TYPE TABLE OF REF TO zcl_13_vehicle.
 
+    DATA rental TYPE REF TO zcl_13_rental.
+    DATA carrier TYPE REF TO ZCL_13_carrier.
+    DATA partners TYPE TABLE OF REF TO zif_13_partner.
+
+    rental = new #(  ).
+    carrier = new #( 'Lufthansa' ).
+
+    append rental to partners. " Upcast
+    APPEND carrier to partners. " Upcast
+
 **********************************************************************
 * Instanziierungen
 **********************************************************************
@@ -64,6 +74,17 @@ CLASS zcl_13_main_vehicles IMPLEMENTATION.
       out->write( vehicle->to_string( ) ).                 " Downcast bzw. Narrowing-cast --> (Dynamische) Polymorphie
     ENDLOOP.
 
+
+    LOOP AT partners INTO DATA(partner).
+
+      out->write( partner->to_string(  ) ). "Dynamische Polymorphie
+
+      IF partner IS INSTANCE OF zcl_13_carrier.
+        carrier = cast #( partner ). "Downcast
+        out->write( carrier->get_biggest_cargo_plane(  ) ).
+      ENDIF.
+
+    ENDLOOP.
 
 
   ENDMETHOD.

@@ -1,17 +1,17 @@
 CLASS zcl_13_vehicle DEFINITION
-  PUBLIC
+  PUBLIC ABSTRACT
   CREATE PUBLIC .
 
   PUBLIC SECTION.
-    Methods constructor IMPORTING make TYPE string
+    METHODS constructor IMPORTING make  TYPE string
                                   model TYPE String.
 
     METHODS:
       set_speed_in_kmh  IMPORTING speed_in_kmh        TYPE i.
 
-    METHODS accelerate IMPORTING value TYPE i RAISING zcx_13_value_too_high.
-    METHODS brake IMPORTING value TYPE i RAISING zcx_13_value_too_high.
-    METHODS to_string RETURNING VALUE(string) TYPE String.
+    METHODS accelerate FINAL IMPORTING value TYPE i RAISING zcx_13_value_too_high.
+    METHODS brake FINAL IMPORTING value TYPE i RAISING zcx_13_value_too_high.
+    METHODS to_string ABSTRACT RETURNING VALUE(string) TYPE String.
 
 
 

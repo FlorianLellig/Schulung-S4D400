@@ -4,6 +4,7 @@ CLASS zcl_13_carrier DEFINITION
   CREATE PUBLIC .
 
   PUBLIC SECTION.
+    INTERFACES zif_13_Partner.
     Methods constructor IMPORTING name TYPE string.
 
     Methods add_plane IMPORTING airplane TYPE REF TO zcl_13_airplane.
@@ -44,6 +45,10 @@ CLASS zcl_13_carrier IMPLEMENTATION.
       ENDIF.
 
     ENDLOOP.
+  ENDMETHOD.
+
+  METHOD zif_13_partner~to_string.
+    string = 'ICH bin die Fluggesellschaft.'.
   ENDMETHOD.
 
 ENDCLASS.
