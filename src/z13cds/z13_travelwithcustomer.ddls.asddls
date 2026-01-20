@@ -3,8 +3,10 @@
 @EndUserText.label: 'Travel with customer View'
 
 define view entity Z13_TravelWithCustomer
-  as select from /dmo/travel   as t
-    inner join   /dmo/customer as c on t.customer_id = c.customer_id
+  as select from /dmo/travel                                                   as t
+    inner join   /dmo/customer                                                 as c on t.customer_id = c.customer_id
+    inner join   DDCDS_CUSTOMER_DOMAIN_VALUE_T( p_domain_name:  '/DMO/STATUS') as s on  s.value_low = t.status
+                                                                                    and s.language  = $session.system_language
 {
   key t.travel_id                                                                    as TravelId,
       t.agency_id                                                                    as AgencyId,
@@ -27,7 +29,7 @@ define view entity Z13_TravelWithCustomer
                           exchange_rate_date => $session.system_date)                as TotalPrice,
       cast('EUR' as abap.cuky)                                                       as CurrencyCode2,
       t.description                                                                  as Description,
-      t.status                                                                       as Status,
+      s.text                                                                         as StatusText,
       concat_with_space(concat_with_space(c.title, c.first_name, 1), c.last_name, 1) as CustomerName,
       c.street                                                                       as Street,
       c.postal_code                                                                  as PostalCode,
