@@ -3,6 +3,9 @@
 @EndUserText.label: 'Uebung 05'
 @Metadata.ignorePropagatedAnnotations: true
 define view entity Z13_CustomerKPIs
+  with parameters
+    P_City : /dmo/city
+  
   as select from Z13_TravelWithCustomer
 
 {
@@ -29,3 +32,5 @@ group by
   PostalCode,
   City,
   CurrencyCode2
+  
+having sum(BookingFee + TotalPrice) >=5000 and City = $parameters.P_City
