@@ -2,18 +2,17 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Travel (restricted view)'
 
-define view entity ZR_13_TravelTP
+define root view entity ZR_13_TravelTP
   as select from ZI_13_Travel
+  
+  composition [0..*] of ZR_13_BookingTP as _Bookings
 {
   key TravelId,
       AgencyId,
       CustomerId,
       BeginDate,
       EndDate,
-      
-      @Semantics.amount.currencyCode: 'CurrencyCode'
       BookingFee,
-      @Semantics.amount.currencyCode: 'CurrencyCode'
       TotalPrice,
       
       CurrencyCode,
@@ -22,5 +21,8 @@ define view entity ZR_13_TravelTP
       CreatedBy,
       CreatedAt,
       LastChangedBy,
-      LastChangedAt
+      LastChangedAt,
+      
+      /* Associations */
+      _Bookings
 }

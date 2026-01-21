@@ -6,8 +6,8 @@
 
 @Metadata.allowExtensions: true
 
-define view entity ZC_13_TravelTP
-  as select from ZR_13_TravelTP
+define root view entity ZC_13_TravelTP
+  as projection on ZR_13_TravelTP
 {
   key TravelId,
       AgencyId,
@@ -25,5 +25,8 @@ define view entity ZC_13_TravelTP
       CreatedBy,
       CreatedAt,
       LastChangedBy,
-      LastChangedAt
+      LastChangedAt,
+      
+      /* Associations */
+      _Bookings : redirected to composition child ZC_13_BookingTP
 }
