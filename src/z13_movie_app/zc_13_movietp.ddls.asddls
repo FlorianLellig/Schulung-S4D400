@@ -7,8 +7,8 @@
 
 @Metadata.allowExtensions: true
 
-define view entity ZC_13_MOVIETP
-  as select from ZI_13_MOVIE
+define root view entity ZC_13_MovieTP
+  as projection on ZR_13_MOVIETP
 {
   key MovieUuid,
   
@@ -22,5 +22,8 @@ define view entity ZC_13_MOVIETP
       CreatedAt,
       CreatedBy,
       LastChangedAt,
-      LastChangedBy
+      LastChangedBy,
+      
+      /* Associations */
+      _Ratings : redirected to composition child ZC_13_RatingTP // Make association public
 }

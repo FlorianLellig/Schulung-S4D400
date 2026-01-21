@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DDLS>
-    <DDLNAME>ZC_13_MOVIETP</DDLNAME>
+    <DDLNAME>ZC_13_RATINGTP</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DDTEXT>Movie</DDTEXT>
     <SOURCE_TYPE>P</SOURCE_TYPE>

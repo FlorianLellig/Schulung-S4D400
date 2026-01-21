@@ -2,8 +2,10 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Movie'
 
-define view entity ZR_13_MOVIETP
+define root view entity ZR_13_MOVIETP
   as select from ZI_13_MOVIE
+  
+  composition [0..*] of ZR_13_RatingTP as _Ratings
 {
   key MovieUuid,
       Title,
@@ -14,5 +16,8 @@ define view entity ZR_13_MOVIETP
       CreatedAt,
       CreatedBy,
       LastChangedAt,
-      LastChangedBy
+      LastChangedBy,
+      
+      /* Associations */
+      _Ratings
 }
