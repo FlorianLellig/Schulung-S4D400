@@ -2,15 +2,9 @@
 "BASEINFO":
 {
 "FROM":
-[
-"ZI_13_AVERAGERATING",
-"ZI_13_GENRETEXT",
-"ZI_13_MOVIE"
-],
+[],
 "ASSOCIATED":
-[
-"ZR_13_RATINGTP"
-],
+[],
 "BASE":
 [],
 "ANNO_REF":

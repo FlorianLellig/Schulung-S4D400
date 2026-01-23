@@ -2,6 +2,8 @@
 
 @UI.headerInfo: { typeNamePlural: 'Ratings', title.value: 'Rating', description.value: 'UserName' }
 
+@UI.presentationVariant: [ { sortOrder: [{ by: 'RatingDate', direction: #DESC }, { by: 'UserName', direction: #ASC }]} ]
+
 annotate entity ZC_13_RatingTP with
 
 {

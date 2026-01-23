@@ -19,8 +19,16 @@ define view entity ZI_13_Travel
       currency_code as CurrencyCode,
       description   as Description,
       status        as Status,
+      
+      @Semantics.user.createdBy: true
       createdby     as CreatedBy,
+      
+      @Semantics.systemDateTime.createdAt: true
       createdat     as CreatedAt,
+      
+      @Semantics.user.lastChangedBy: true
       lastchangedby as LastChangedBy,
+      
+      @Semantics.systemDateTime.lastChangedAt: true
       lastchangedat as LastChangedAt
 }

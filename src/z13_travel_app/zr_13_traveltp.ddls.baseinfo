@@ -3,6 +3,7 @@
 {
 "FROM":
 [
+"ZI_13_CUSTOMERTEXT",
 "ZI_13_TRAVEL"
 ],
 "ASSOCIATED":

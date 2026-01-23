@@ -6,7 +6,9 @@
   description.value: 'Description'
 }
 
+@UI.lineItem: [ { criticality: 'StatusCriticality' } ]
 
+@UI.presentationVariant: [ { sortOrder: [{ by: 'BeginDate', direction: #DESC }, { by: 'EndDate', direction: #ASC }] } ]
 
 annotate entity ZC_13_TravelTP with
 {
@@ -16,9 +18,17 @@ annotate entity ZC_13_TravelTP with
                { position: 20, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Admin', label: 'Adminestrative Data' },
                { position: 30, type: #LINEITEM_REFERENCE, targetElement: '_Bookings', label: 'Bookings' } ]
 
+
+  /* Actions */
+  @UI.lineItem: [{ position: 10 }, 
+                 { position: 10, type: #FOR_ACTION, label: 'Cancel Travel', dataAction: 'CancelTravel' }]
+                 
+  @UI.identification: [ { position: 10, type: #FOR_ACTION, label: 'Cancel Travel', dataAction: 'CancelTravel' } ] // für auf die Object page
+
+
   /* Fields */
 
-  @UI.lineItem: [ { position: 10 } ]
+//  @UI.lineItem: [ { position: 10 } ]                          Lösung: wird als array mit in die UI.lineitem für die action gepackt
   @UI.fieldGroup: [ { position: 10, qualifier: 'Details' } ]
   TravelId;
 
@@ -57,23 +67,26 @@ annotate entity ZC_13_TravelTP with
   @UI.fieldGroup: [ { position: 80, qualifier: 'Details' } ]
   Description;
 
-  @UI.lineItem: [ { position: 80 } ]
+  @UI.lineItem: [ { position: 80, criticality: 'StatusCriticality', criticalityRepresentation: #WITHOUT_ICON } ]
   @UI.selectionField: [ { position: 60 } ]
-  @UI.fieldGroup: [ { position: 90, qualifier: 'Details' } ]
+  @UI.fieldGroup: [ { position: 90, qualifier: 'Details', criticality: 'StatusCriticality', criticalityRepresentation: #WITHOUT_ICON } ]
   Status;
+  
+  @UI.hidden: true
+  StatusCriticality;
 
 
-// -------------------Admin---------------------------------------------
+  // -------------------Admin---------------------------------------------
 
   @UI.fieldGroup: [ { position: 10, qualifier: 'Admin' } ]
   CreatedBy;
-  
+
   @UI.fieldGroup: [ { position: 20, qualifier: 'Admin' } ]
   CreatedAt;
-  
+
   @UI.fieldGroup: [ { position: 30, qualifier: 'Admin' } ]
   LastChangedBy;
-  
+
   @UI.fieldGroup: [ { position: 40, qualifier: 'Admin' } ]
   LastChangedAt;
 
